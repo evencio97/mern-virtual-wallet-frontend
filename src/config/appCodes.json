@@ -1,0 +1,35 @@
+{
+    "successes": {
+        "login": "Login successful.",
+        "register": "Account created successfully, thank you.",
+        "logout": "Session close successfully, come back soon.",
+        "projectAdded": "Project created successfully.",
+        "projectDeleted": "Project deleted successfully.",
+        "projectsGet": "List of projects update.",
+        "taskAdded": "Task created successfully.",
+        "taskDeleted": "Task deleted successfully.",
+        "taskUpdated": "Task updated successfully.",
+        "tasksGet": "List of tasks update."
+    },
+    "errors": {
+        "noMoreTasks": "No more tasks to show.",
+        "taskNotFind": "We can't find the task selected, please try with other.",
+        "noMoreProjects": "No more projects to show.",
+        "projectNotFind": "We can't find the project selected, please try with other.",
+        "projectExist": "You already have a project with the same name.",
+        "notLogin": "Please login to continue.",
+        "expSession": "Your session has expired, please login to continue.", 
+        "badToken": "An error has occurred, please login to continue.",
+        "invalidSession": "Your session has been closed, please login to continue.",
+        "badConfirmedPassword": "The password confirmation must be equal to your password.",
+        "emailExist": "The email is already been used by another user, please try with other.",
+        "emailNotFind": "There is no user with the email introduced.",
+        "emailEmpty": "The email can't be empty.",
+        "passwordInvalid": "The password can't be empty or is invalid.",
+        "badPassword": "The password is incorrect.",
+        "badRequest": "Please check the information introduced and try again.",
+        "serverError": "An error has occurred, please try again later.",
+        "localError": "An error has occurred, please try again later."
+    },
+    "badAuthCodes": ["expSession", "badToken", "invalidSession"]
+}

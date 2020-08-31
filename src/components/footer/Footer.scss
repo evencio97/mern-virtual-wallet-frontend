@@ -1,0 +1,24 @@
+#footer {
+  background-color: transparent;
+  padding: 2em 0 1em 0;
+  text-align: center;
+  width: 100%;
+  color: white;
+  p {
+    font-size: 0.8em;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 2.5px;
+  }
+}
+
+.footer-autor {
+  color: white !important;
+  text-decoration: none;
+  transition: 0.5s;
+  &:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+  }
+}

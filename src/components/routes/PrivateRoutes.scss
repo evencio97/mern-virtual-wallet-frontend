@@ -1,0 +1,16 @@
+.checking-session {
+    height: 100vh;
+    text-align: center;
+
+    &>div {
+        padding: 15% 0 0;
+    }
+    .MuiCircularProgress-root {
+        color: var(--white) !important;
+    }
+    p {
+        margin: 2rem 0 0;
+        color: white;
+        font-size: 1.3rem;
+    }
+}
