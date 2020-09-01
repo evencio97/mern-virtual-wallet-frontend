@@ -19,9 +19,10 @@ function Register({ history }) {
     // User Context
     const { login }= useContext(UserContext);
 
-    const iniRegisterData= { name: '', lastname: '', email: '', password: '', confirmedPassword: '', showPasswords: false };
+    const iniRegisterData= { name: '', lastname: '', email: '', document: '',
+        phone: '', password: '', confirmedPassword: '', showPasswords: false };
     const [registerData, setRegisterData] = useState(iniRegisterData);
-    const {name, lastname, email, password, confirmedPassword, showPasswords} = registerData
+    const {name, lastname, email, document, phone, password, confirmedPassword, showPasswords} = registerData
     const passwordCheck = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
     const initForm = (all=true) => {
@@ -37,6 +38,10 @@ function Register({ history }) {
             return addNotification({ variant: 'error', message: "The lastname can't be empty." });
         if (!(email.length && email.trim())) 
             return addNotification({ variant: 'error', message: "The email can't be empty." });
+        if (!(document.length && document.trim())) 
+            return addNotification({ variant: 'error', message: "The document can't be empty." });
+        if (!(phone.length && phone.trim())) 
+            return addNotification({ variant: 'error', message: "The phone can't be empty." });
         if (!(password.length && passwordCheck.test(password)))
             return addNotification({ variant: 'error', message: "The password can't be empty or is invalid." });
         if (password !== confirmedPassword)
@@ -94,6 +99,14 @@ function Register({ history }) {
                     <div className="form-field col-12 col-md-6">
                         <Input type="text" id="registerLastname" name="lastname" label="Enter your lastname" variant="outlined" 
                             setValue={onChangeForm} valValue={valTextInput} className="" value={lastname} fullWidth />
+                    </div>
+                    <div className="form-field col-12 col-md-6">
+                        <Input type="text" id="registerDocument" name="document" label="Enter your document" variant="outlined" 
+                            setValue={onChangeForm} valValue={valTextInput} className="" value={document} fullWidth />
+                    </div>
+                    <div className="form-field col-12 col-md-6">
+                        <Input type="text" id="registerPhone" name="phone" label="Enter your phone" variant="outlined" 
+                            setValue={onChangeForm} valValue={valTextInput} className="" value={phone} fullWidth />
                     </div>
                     <div className="form-field">
                         <Input type="email" id="registerEmail" name="email" label="Enter your email" variant="outlined" 

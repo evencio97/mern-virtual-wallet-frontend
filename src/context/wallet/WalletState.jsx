@@ -7,13 +7,27 @@ const WalletState = props => {
     const initialState = {
         balance: 0,
         purchases: {
-            results: [],
+            results: [
+                {id: 1, amount: 1000.23, date: Date.now(), status: "success"},
+                {id: 2, amount: 1000.23, date: Date.now(), status: "processing"},
+                {id: 3, amount: 1000.23, date: Date.now(), status: "fail"},
+                {id: 4, amount: 1000.23, date: Date.now(), status: "success"},
+                {id: 5, amount: 1000.23, date: Date.now(), status: "fail"},
+                {id: 6, amount: 1000.23, date: Date.now(), status: "success"},
+            ],
             total: 0,
             page: 1,
             lastPage: 1,
         },
         deposits: {
-            results: [],
+            results: [
+                {id: 1, amount: 1000.23, date: Date.now(), status: "success"},
+                {id: 2, amount: 1000.23, date: Date.now(), status: "processing"},
+                {id: 3, amount: 1000.23, date: Date.now(), status: "fail"},
+                {id: 4, amount: 1000.23, date: Date.now(), status: "success"},
+                {id: 5, amount: 1000.23, date: Date.now(), status: "fail"},
+                {id: 6, amount: 1000.23, date: Date.now(), status: "success"},
+            ],
             total: 0,
             page: 1,
             lastPage: 1,

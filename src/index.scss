@@ -64,7 +64,10 @@ a:hover {
   margin-left: 10px !important;
 }
 .mg-bottom-md {
-  margin-bottom: 20px !important;
+  margin-bottom: 1rem !important;
+}
+.mg-top-md {
+  margin-top: 1rem !important;
 }
 .mg-bottom-lg {
   margin-bottom: 2rem !important;
@@ -121,9 +124,9 @@ a:hover {
 }
 
 .custom-shadow {
-  -webkit-box-shadow: 0px 4px 10px -3px rgba(117, 117, 117, 1);
-  -moz-box-shadow: 0px 4px 10px -3px rgba(117, 117, 117, 1);
-  box-shadow: 0px 4px 10px -3px rgba(117, 117, 117, 1);
+  -webkit-box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12);
+  -moz-box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12);
 }
 .custom-shadow-dark {
   -webkit-box-shadow: 0px 6px 11px -8px rgba(0, 0, 0, 0.9);

@@ -56,8 +56,8 @@ function PrivateRoutes({ component: Component, ...props }) {
         return token && token !== undefined ? (<Component {...props} />) : (<Redirect to="/login" />);
       else
         return (
-          <div className="checking-session">
-            <div>
+          <div className="checking-session row align-items-center">
+            <div className="col">
               <CircularProgress />
               <p>Checking your session, please wait.</p>
             </div>
