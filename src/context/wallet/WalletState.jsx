@@ -5,7 +5,7 @@ import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_DEPOSITS } from '../../types
 
 const WalletState = props => {
     const initialState = {
-        balance: 0,
+        balance: 1000,
         purchases: {
             results: [
                 {id: 1, amount: 1000.23, date: Date.now(), status: "success"},

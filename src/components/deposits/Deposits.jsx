@@ -48,7 +48,7 @@ function Deposits() {
   return deposits.results?
     (<div className="row">
       <div className="col-12 text-center custom-shadow animated fadeIn">
-        <h2>Deposits</h2>
+        <h2 className="mg-bottom-md">Deposits</h2>
         <TableContainer>
           <Table className="dashboard-table" aria-label="simple table">
             <TableHead>

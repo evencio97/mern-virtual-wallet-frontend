@@ -48,7 +48,7 @@ function Purchases() {
   return purchases.results?
     (<div className="row">
       <div className="col-12 text-center custom-shadow animated fadeIn">
-        <h2>Purchases</h2>
+        <h2 className="mg-bottom-md">Purchases</h2>
         <TableContainer>
           <Table className="dashboard-table" aria-label="simple table">
             <TableHead>

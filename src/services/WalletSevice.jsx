@@ -36,9 +36,9 @@ export async function MakePurchaseService(data, token) {
     }
 }
 
-export async function ConfirmPurchaseService(data, token) {
+export async function ConfirmPurchaseService(id, data, token) {
     try {
-        let response= await axiosClient.post("/purchase/confirm", data, { headers: { ...headers, Authorization: token } });
+        let response= await axiosClient.post("/purchase/"+id+"/confirm", data, { headers: { ...headers, Authorization: token } });
         // Validate response
         if (response.status !== 200) throw new Error();
         if (!('purchase' in response.data)) throw new Error();

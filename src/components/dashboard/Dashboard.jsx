@@ -9,6 +9,7 @@ import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import Purchases from '../purchases/Purchases';
 import Deposits from '../deposits/Deposits';
 import Deposit from '../deposit/Deposit';
+import Purchase from '../purchase/Purchase';
 
 function Dashboard() {
   // Contexts
@@ -21,10 +22,10 @@ function Dashboard() {
       <div className="row justify-content-between">
         <div className="col-12 col-md-6 user-info custom-shadow">
           <i className="fas fa-user-circle"></i>
-          <h2>Hi {user.name + " " + user.lastname}!</h2>
+          <h2 className="no-margin">Hi {user.name + " " + user.lastname}!</h2>
         </div>
         <div className="col-12 col-md-5 balance custom-shadow">
-          <h2 className="balance-text">Your current balance is</h2>
+          <h2 className="balance-text no-margin">Your current balance is</h2>
           <p className="balance-amount">$<span>{balance}</span></p>
         </div>
       </div>
@@ -32,10 +33,7 @@ function Dashboard() {
         <div className="col-12 custom-shadow">
           <div className="row justify-content-between">
             <Deposit/>
-            <div className="col-12 col-md-5 balance">
-              <h2 className="balance-text">Your current balance is</h2>
-              <p className="balance-amount">$<span>{balance}</span></p>
-            </div>
+            <Purchase/>
           </div>
         </div>
       </div>

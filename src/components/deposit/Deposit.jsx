@@ -60,7 +60,7 @@ function Deposit() {
 
   return (
     <div className="col-12 col-md-5 text-center no-padding">
-      <h1>Make a deposit</h1>
+      <h2 className="mg-bottom-md">Make a deposit</h2>
       <form className="text-left" id="depositForm" onSubmit={(e) => makeDeposit(e)}>
         <div className="form-field">
           <Input type="text" id="depositDocument" name="document" label="Document" variant="outlined"
