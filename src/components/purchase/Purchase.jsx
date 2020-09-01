@@ -18,7 +18,7 @@ function Purchase() {
 
   const iniState = { amount: 0, code: "", showCode: false };
   const [ purchaseData, setPurchaseData ] = useState(iniState);
-  const { amount, code, showCode } = purchaseData
+  const { amount, code, showCode } = purchaseData;
 
   const initForm = () => {
     setPurchaseData(iniState);

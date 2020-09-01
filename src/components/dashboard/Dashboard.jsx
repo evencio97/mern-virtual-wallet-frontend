@@ -3,19 +3,18 @@ import './Dashboard.scss';
 // Contexts
 import AppContext from '../../context/app/AppContext';
 import UserContext from '../../context/user/UserContext';
-import WalletContext from '../../context/wallet/WalletContext';
 // Components
 import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import Purchases from '../purchases/Purchases';
 import Deposits from '../deposits/Deposits';
 import Deposit from '../deposit/Deposit';
 import Purchase from '../purchase/Purchase';
+import Balance from '../balance/Balance';
 
 function Dashboard() {
   // Contexts
   const { loading } = useContext(AppContext);
   const { user } = useContext(UserContext);
-  const { balance } = useContext(WalletContext);
 
   return (
     <div className="container app-container animated fadeIn">
@@ -24,10 +23,7 @@ function Dashboard() {
           <i className="fas fa-user-circle"></i>
           <h2 className="no-margin">Hi {user.name + " " + user.lastname}!</h2>
         </div>
-        <div className="col-12 col-md-5 balance custom-shadow">
-          <h2 className="balance-text no-margin">Your current balance is</h2>
-          <p className="balance-amount">$<span>{balance}</span></p>
-        </div>
+        <Balance/>
       </div>
       <div className="row">
         <div className="col-12 custom-shadow">

@@ -17,7 +17,7 @@ function Deposit() {
 
   const iniState = { document: user.document, phone: user.phone, amount: 0 };
   const [depositData, setDepositData] = useState(iniState);
-  const { document, phone, amount } = depositData
+  const { document, phone, amount } = depositData;
 
   const initForm = () => {
     setDepositData(iniState);
