@@ -1,0 +1,22 @@
+.dashboard-table {
+    min-width: 100%;
+}
+
+.status {
+    span {
+        padding: 10px 20px;
+        text-transform: capitalize;
+        // margin: 0 0 0 -40px;
+        color: var(--white);
+        border-radius: 20px;
+    }
+    &.success span {
+        background-color: var(--success-tint);
+    }
+    &.warning span {
+        background-color: var(--warning-tint);
+    }
+    &.danger span {
+        background-color: var(--danger-tint);
+    }
+}

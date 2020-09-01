@@ -6,7 +6,7 @@ import { SET_USER, SET_TOKEN, LOGIN, LOGOUT } from '../../types';
 
 const UserState = props => {
     const initialState = {
-        user: {name: "Evencio", lastname: "Hernandez", email: "algo@gmail.com", phone: "0414-5372753"},
+        user: {name: "Evencio", lastname: "Hernandez", email: "algo@gmail.com", document:"25632761", phone: "0414-5372753"},
         token: localStorage.getItem('token')
     }
     // Dispatch for exec actions

@@ -6,13 +6,15 @@ import UserContext from '../../context/user/UserContext';
 import WalletContext from '../../context/wallet/WalletContext';
 // Components
 import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
-import Table from '../table/Table';
+import Purchases from '../purchases/Purchases';
+import Deposits from '../deposits/Deposits';
+import Deposit from '../deposit/Deposit';
 
 function Dashboard() {
   // Contexts
   const { loading } = useContext(AppContext);
   const { user } = useContext(UserContext);
-  const { balance, purchases, deposits, setPurchases, setDeposits } = useContext(WalletContext);
+  const { balance } = useContext(WalletContext);
 
   return (
     <div className="container app-container animated fadeIn">
@@ -27,17 +29,18 @@ function Dashboard() {
         </div>
       </div>
       <div className="row">
-        <div className="col-12 text-center custom-shadow">
-          <h2>Purchases</h2>
-          <Table data={purchases}/>
+        <div className="col-12 custom-shadow">
+          <div className="row justify-content-between">
+            <Deposit/>
+            <div className="col-12 col-md-5 balance">
+              <h2 className="balance-text">Your current balance is</h2>
+              <p className="balance-amount">$<span>{balance}</span></p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-12 text-center custom-shadow">
-          <h2>Deposits</h2>
-          <Table data={deposits}/>
-        </div>
-      </div>
+      <Purchases/>
+      <Deposits/>
       <LoadingSpinner loading={loading} />
     </div>
   );

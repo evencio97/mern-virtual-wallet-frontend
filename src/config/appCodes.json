@@ -3,20 +3,11 @@
         "login": "Login successful.",
         "register": "Account created successfully, thank you.",
         "logout": "Session close successfully, come back soon.",
-        "projectAdded": "Project created successfully.",
-        "projectDeleted": "Project deleted successfully.",
-        "projectsGet": "List of projects update.",
-        "taskAdded": "Task created successfully.",
-        "taskDeleted": "Task deleted successfully.",
-        "taskUpdated": "Task updated successfully.",
-        "tasksGet": "List of tasks update."
+        "depositMake": "Deposit maked successfully.",
+        "purchaseMake": "Purchase maked successfully.",
+        "balanceGet": "Balance get successfully."
     },
     "errors": {
-        "noMoreTasks": "No more tasks to show.",
-        "taskNotFind": "We can't find the task selected, please try with other.",
-        "noMoreProjects": "No more projects to show.",
-        "projectNotFind": "We can't find the project selected, please try with other.",
-        "projectExist": "You already have a project with the same name.",
         "notLogin": "Please login to continue.",
         "expSession": "Your session has expired, please login to continue.", 
         "badToken": "An error has occurred, please login to continue.",
