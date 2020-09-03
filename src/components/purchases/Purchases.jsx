@@ -21,7 +21,7 @@ function Purchases() {
 
   // Load purchases
   useEffect(() => {
-    // getPurchases();
+    getPurchases();
     // eslint-disable-next-line
   }, []);
 
@@ -40,12 +40,12 @@ function Purchases() {
   const checkStatus = (status) => {
     let statusClass = "status ";
     if (status === "success") statusClass += "success";
-    else if (status === "processing") statusClass += "warning";
+    else if (status === "not confirm") statusClass += "warning";
     else statusClass += "danger";
     return statusClass
   }
 
-  return purchases.results?
+  return purchases?
     (<div className="row">
       <div className="col-12 text-center custom-shadow animated fadeIn">
         <h2 className="mg-bottom-md">Purchases</h2>
@@ -59,8 +59,8 @@ function Purchases() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {purchases.results.map((element) => (
-                <TableRow key={element.id}>
+              {purchases.map((element) => (
+                <TableRow key={element._id}>
                   <TableCell align="center" component="th" scope="row">{element.amount}</TableCell>
                   <TableCell align="center">{element.date}</TableCell>
                   <TableCell align="center" className={checkStatus(element.status)}><span>{element.status}</span></TableCell>

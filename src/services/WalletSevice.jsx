@@ -29,7 +29,7 @@ export async function MakePurchaseService(data, token) {
         let response= await axiosClient.post("/purchase", data, { headers: { ...headers, Authorization: token } });
         // Validate response
         if (response.status !== 200) throw new Error();
-        if (!('purchase' in response.data)) throw new Error();
+        if (!('purchase_id' in response.data)) throw new Error();
         return response.data;
     } catch (error) {
         return "response" in error? error.response.data:{ error: true, errorCode: "serverError" };
@@ -60,9 +60,9 @@ export async function GetPurchasesService(token) {
     }
 }
 
-export async function GetBalanceService(token) {
+export async function GetBalanceService(data, token) {
     try {
-        let response= await axiosClient.get("/balance", { headers: { ...headers, Authorization: token } });
+        let response= await axiosClient.post("/balance", data, { headers: { ...headers, Authorization: token } });
         // Validate response
         if (response.status !== 200) throw new Error();
         if (!('balance' in response.data)) throw new Error();

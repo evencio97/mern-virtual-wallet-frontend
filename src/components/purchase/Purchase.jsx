@@ -13,10 +13,10 @@ import Input from '../input/Input';
 function Purchase() {
   // Contexts
   const { setLoading, addNotification } = useContext(AppContext);
-  const { balance, addPurchase } = useContext(WalletContext);
+  const { balance, setBalance, addPurchase } = useContext(WalletContext);
   const { token, checkSessionExpError } = useContext(UserContext);
 
-  const iniState = { amount: 0, code: "", showCode: false };
+  const iniState = { amount: 0, code: "", showCode: false, id: null };
   const [ purchaseData, setPurchaseData ] = useState(iniState);
   const { amount, code, showCode } = purchaseData;
 
@@ -45,32 +45,30 @@ function Purchase() {
   const makePurchase = async () => {
     setLoading(true);
     // Purchase request
-    // let result = await MakePurchaseService(purchaseData, token);
+    let result = await MakePurchaseService(purchaseData, token);
     setLoading(false);
     // Check error
-    // if (result.error) {
-    //   addNotification({ variant: 'error', message: result.errorCode });
-    //   return checkSessionExpError(result.errorCode);
-    // }
-    // setPurchaseData({ ...purchaseData, showCode: true, ...result.purchase });
-    console.log("makePurchase");
-    setPurchaseData({ ...purchaseData, showCode: true });
+    if (result.error) {
+      addNotification({ variant: 'error', message: result.errorCode });
+      return checkSessionExpError(result.errorCode);
+    }
+    setPurchaseData({ ...purchaseData, showCode: true, id: result.purchase_id });
   };
 
   const confirmPurchase = async () => {
     setLoading(true);
     // Purchase request
-    // let result = await ConfirmPurchaseService(purchaseData.id, purchaseData, token);
+    let result = await ConfirmPurchaseService(purchaseData.id, purchaseData, token);
     setLoading(false);
     // Check error
-    // if (result.error) {
-    //   addNotification({ variant: 'error', message: result.errorCode });
-    //   return checkSessionExpError(result.errorCode);
-    // }
-    // Update state
-    // addPurchase(result.purchase);
+    if (result.error) {
+      addNotification({ variant: 'error', message: result.errorCode });
+      return checkSessionExpError(result.errorCode);
+    }
+    // State
+    addPurchase(result.purchase);
+    setBalance(balance-result.purchase.amount);
     addNotification({ variant: 'success', message: "purchaseMake" });
-    console.log("confirmPurchase");
     // Init form
     initForm();
   };

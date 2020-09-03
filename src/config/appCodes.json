@@ -8,11 +8,17 @@
         "balanceGet": "Balance get successfully."
     },
     "errors": {
+        "badDeposit": "There is an error with the deposit information.",
+        "badBalance": "You don't have enough money.",
+        "depositNotFind": "We can't find the deposit.",
+        "purchaseNotFind": "We can't find the purchase.",
+        "walletNotFind": "You don't have an active wallet.",
         "notLogin": "Please login to continue.",
         "expSession": "Your session has expired, please login to continue.", 
         "badToken": "An error has occurred, please login to continue.",
         "invalidSession": "Your session has been closed, please login to continue.",
         "badConfirmedPassword": "The password confirmation must be equal to your password.",
+        "userExist": "The email or document is already been used by another user.",
         "emailExist": "The email is already been used by another user, please try with other.",
         "emailNotFind": "There is no user with the email introduced.",
         "emailEmpty": "The email can't be empty.",

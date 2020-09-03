@@ -5,33 +5,9 @@ import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_DEPOSITS } from '../../types
 
 const WalletState = props => {
     const initialState = {
-        balance: 1000,
-        purchases: {
-            results: [
-                {id: 1, amount: 1000.23, date: Date.now(), status: "success"},
-                {id: 2, amount: 1000.23, date: Date.now(), status: "processing"},
-                {id: 3, amount: 1000.23, date: Date.now(), status: "fail"},
-                {id: 4, amount: 1000.23, date: Date.now(), status: "success"},
-                {id: 5, amount: 1000.23, date: Date.now(), status: "fail"},
-                {id: 6, amount: 1000.23, date: Date.now(), status: "success"},
-            ],
-            total: 0,
-            page: 1,
-            lastPage: 1,
-        },
-        deposits: {
-            results: [
-                {id: 1, amount: 1000.23, date: Date.now(), status: "success"},
-                {id: 2, amount: 1000.23, date: Date.now(), status: "processing"},
-                {id: 3, amount: 1000.23, date: Date.now(), status: "fail"},
-                {id: 4, amount: 1000.23, date: Date.now(), status: "success"},
-                {id: 5, amount: 1000.23, date: Date.now(), status: "fail"},
-                {id: 6, amount: 1000.23, date: Date.now(), status: "success"},
-            ],
-            total: 0,
-            page: 1,
-            lastPage: 1,
-        },
+        balance: 0,
+        purchases: [],
+        deposits: []
     }
     // Dispatch for exec actions
     const [state, dispatch] = useReducer(walletReducer, initialState);
@@ -54,12 +30,10 @@ const WalletState = props => {
         return true;
     }
     const addPurchase = (data) => {
-        let aux= { ...state.purchases, results: [ data, ...state.purchases.results ], total: state.purchases.total+1 };
-        dispatch({ type: SET_PURCHASES, payload: aux });
+        dispatch({ type: SET_PURCHASES, payload: [ data, ...state.purchases ] });
     }
     const addDeposit = (data) => {
-        let aux= { ...state.deposits, results: [ data, ...state.deposits.results ], total: state.deposits.total+1 };
-        dispatch({ type: SET_DEPOSITS, payload: aux });
+        dispatch({ type: SET_DEPOSITS, payload: [ data, ...state.deposits ] });
     }
 
     return (

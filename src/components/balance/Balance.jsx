@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import Collapse from '@material-ui/core/Collapse';
 import './Balance.scss';
 // Contexts
 import AppContext from '../../context/app/AppContext';
@@ -28,15 +27,15 @@ function Balance() {
     event.preventDefault();
     setLoading(true);
     // Request
-    // let result = await GetBalanceService(consultData, token);
+    let result = await GetBalanceService(consultData, token);
     setLoading(false);
     // Check error
-    // if (result.error) {
-    //   addNotification({ variant: 'error', message: result.errorCode });
-    //   return checkSessionExpError(result.errorCode);
-    // }
+    if (result.error) {
+      addNotification({ variant: 'error', message: result.errorCode });
+      return checkSessionExpError(result.errorCode);
+    }
     // Update state
-    // setBalance(result.balance);
+    setBalance(result.balance);
     addNotification({ variant: 'success', message: "balanceGet" });
     // Init form
     initForm();

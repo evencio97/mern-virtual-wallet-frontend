@@ -12,7 +12,7 @@ import Input from '../input/Input';
 function Deposit() {
   // Contexts
   const { setLoading, addNotification } = useContext(AppContext);
-  const { addDeposit } = useContext(WalletContext);
+  const { balance, setBalance, addDeposit } = useContext(WalletContext);
   const { user, token, checkSessionExpError } = useContext(UserContext);
 
   const iniState = { document: user.document, phone: user.phone, amount: 0 };
@@ -39,6 +39,7 @@ function Deposit() {
     }
     // Update state
     addDeposit(result.deposit);
+    setBalance(balance+result.deposit.amount);
     addNotification({ variant: 'success', message: "depositMake" });
     // Init form
     initForm();
