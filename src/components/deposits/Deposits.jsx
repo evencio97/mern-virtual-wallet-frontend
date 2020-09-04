@@ -62,7 +62,7 @@ function Deposits() {
               {deposits.map((element) => (
                 <TableRow key={element._id}>
                   <TableCell align="center" component="th" scope="row">{element.amount}</TableCell>
-                  <TableCell align="center">{element.date}</TableCell>
+                  <TableCell align="center">{element.created_at}</TableCell>
                   <TableCell align="center" className={checkStatus(element.status)}><span>{element.status}</span></TableCell>
                 </TableRow>
               ))}

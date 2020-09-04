@@ -1,4 +1,4 @@
-import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_DEPOSITS } from '../../types';
+import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_PURCHASE_SELEC, SET_DEPOSITS } from '../../types';
 
 export default (state, action) => {
     switch (action.type) {
@@ -8,6 +8,8 @@ export default (state, action) => {
             return { ...state, balance: action.payload };
         case SET_PURCHASES:
             return { ...state, purchases: action.payload };
+        case SET_PURCHASE_SELEC:
+            return { ...state, purchaseSelected: action.payload };
         case SET_DEPOSITS:
             return { ...state, deposits: action.payload };
         default:

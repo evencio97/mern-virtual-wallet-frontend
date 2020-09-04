@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Collapse from '@material-ui/core/Collapse';
 import './Purchase.scss';
 // Contexts
@@ -13,14 +13,21 @@ import Input from '../input/Input';
 function Purchase() {
   // Contexts
   const { setLoading, addNotification } = useContext(AppContext);
-  const { balance, setBalance, addPurchase } = useContext(WalletContext);
+  const { balance, setBalance, addPurchase, purchaseSelected, setPurchaseSelected } = useContext(WalletContext);
   const { token, checkSessionExpError } = useContext(UserContext);
 
-  const iniState = { amount: 0, code: "", showCode: false, id: null };
+  const iniState = { amount: 0, code: "", showCode: false, _id: null };
   const [ purchaseData, setPurchaseData ] = useState(iniState);
   const { amount, code, showCode } = purchaseData;
 
+  useEffect(() => {
+    if (purchaseSelected) setPurchaseData({ ...purchaseSelected, code: "", showCode: true });
+    else if (purchaseData !== iniState) setPurchaseData(iniState);
+    // eslint-disable-next-line
+  }, [purchaseSelected]);
+
   const initForm = () => {
+    if (purchaseSelected) setPurchaseSelected(null);
     setPurchaseData(iniState);
   }
 
@@ -28,7 +35,7 @@ function Purchase() {
     event.preventDefault();
     if (amount <= 0)
       return addNotification({ variant: 'error', message: "The amount is invalid." });
-    if (amount > balance)
+    if (balance!==null && amount>balance)
       return addNotification({ variant: 'error', message: "The amount can't be greater than your balance." });
     if (showCode) {
       if (!code.trim().length)
@@ -52,13 +59,13 @@ function Purchase() {
       addNotification({ variant: 'error', message: result.errorCode });
       return checkSessionExpError(result.errorCode);
     }
-    setPurchaseData({ ...purchaseData, showCode: true, id: result.purchase_id });
+    setPurchaseData({ ...purchaseData, showCode: true, _id: result.purchase_id });
   };
 
   const confirmPurchase = async () => {
     setLoading(true);
     // Purchase request
-    let result = await ConfirmPurchaseService(purchaseData.id, purchaseData, token);
+    let result = await ConfirmPurchaseService(purchaseData._id, purchaseData, token);
     setLoading(false);
     // Check error
     if (result.error) {
@@ -67,7 +74,7 @@ function Purchase() {
     }
     // State
     addPurchase(result.purchase);
-    setBalance(balance-result.purchase.amount);
+    if (balance!==null) setBalance(balance-result.purchase.amount);
     addNotification({ variant: 'success', message: "purchaseMake" });
     // Init form
     initForm();
@@ -91,7 +98,7 @@ function Purchase() {
     <div className="col-12 col-md-5 text-center no-padding">
       <h2 className="mg-bottom-md">Make a purchase</h2>
       { balance>0?
-        (<form className="text-left" id="purchaseForm" onSubmit={(e) => checkSubmit(e)}>
+        (<form className="text-left" _id="purchaseForm" onSubmit={(e) => checkSubmit(e)}>
           <div className="form-field">
             <Input type="number" id="purchaseAmount" name="amount" label="Amount" variant="outlined"
               setValue={onChangeForm} valValue={valAmountInput} value={amount} disabled={showCode} fullWidth />

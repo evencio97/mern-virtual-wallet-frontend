@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import './Balance.scss';
 // Contexts
 import AppContext from '../../context/app/AppContext';
@@ -23,23 +23,28 @@ function Balance() {
     setConsultData(iniState);
   }
 
-  const consultBalance = async (event) => {
-    event.preventDefault();
+  const consultBalance = async (event, showNotification=true) => {
+    if (event) event.preventDefault();
     setLoading(true);
     // Request
     let result = await GetBalanceService(consultData, token);
     setLoading(false);
     // Check error
     if (result.error) {
-      addNotification({ variant: 'error', message: result.errorCode });
+      if (showNotification) addNotification({ variant: 'error', message: result.errorCode });
       return checkSessionExpError(result.errorCode);
     }
     // Update state
     setBalance(result.balance);
-    addNotification({ variant: 'success', message: "balanceGet" });
+    if (showNotification) addNotification({ variant: 'success', message: "balanceGet" });
     // Init form
     initForm();
   };
+
+  useEffect(() => {
+    if (balance===null) consultBalance(null, false);
+    // eslint-disable-next-line
+  }, []);
 
   const valTextInput = value => {
     if (value.length === 0) return false;
@@ -71,8 +76,14 @@ function Balance() {
     </div>)
     :
     (<div className="col-12 col-md-5 balance custom-shadow animated fadeIn">
-      <h2 className="balance-text no-margin">Your current balance is</h2>
-      <p className="balance-amount">$<span>{balance}</span></p>
+      { balance!==null?
+        <Fragment>
+          <h2 className="balance-text no-margin">Your current balance is</h2>
+          <p className="balance-amount">$<span>{balance}</span></p>
+        </Fragment>
+      :
+        <h2 className="balance-text mg-bottom-md">Please consult your balance</h2>
+      }
       <button type="button" id="consultSubmit" className="btn-1"
         onClick={()=> {setConsultData({ ...consultData, showConsultBalance: true })}}>
         Consult Balance

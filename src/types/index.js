@@ -8,6 +8,7 @@ export const LOGOUT = 'LOGOUT';
 // Wallet types
 export const SET_BALANCE = 'SET_BALANCE';
 export const SET_PURCHASES = 'SET_PURCHASES';
+export const SET_PURCHASE_SELEC = 'SET_PURCHASE_SELEC';
 export const SET_DEPOSITS = 'SET_DEPOSITS';
 // App types
 export const SET_LOADING = 'SET_LOADING';

@@ -39,7 +39,7 @@ function Deposit() {
     }
     // Update state
     addDeposit(result.deposit);
-    setBalance(balance+result.deposit.amount);
+    if (balance!==null) setBalance(balance+result.deposit.amount);
     addNotification({ variant: 'success', message: "depositMake" });
     // Init form
     initForm();

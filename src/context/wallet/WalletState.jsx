@@ -1,12 +1,13 @@
 import React, { useReducer } from 'react';
 import walletContext from './WalletContext';
 import walletReducer from './WalletReducer';
-import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_DEPOSITS } from '../../types';
+import { INI_STATE, SET_BALANCE, SET_PURCHASES, SET_PURCHASE_SELEC, SET_DEPOSITS } from '../../types';
 
 const WalletState = props => {
     const initialState = {
-        balance: 0,
+        balance: null,
         purchases: [],
+        purchaseSelected: null,
         deposits: []
     }
     // Dispatch for exec actions
@@ -24,13 +25,18 @@ const WalletState = props => {
         dispatch({ type: SET_PURCHASES, payload: data });
         return true;
     }
+    const setPurchaseSelected= (data) => {
+        dispatch({ type: SET_PURCHASE_SELEC, payload: data });
+        return true;
+    }
     const setDeposits = (data) => { 
         if (!(Array.isArray(data) && data.length)) return false;
         dispatch({ type: SET_DEPOSITS, payload: data });
         return true;
     }
     const addPurchase = (data) => {
-        dispatch({ type: SET_PURCHASES, payload: [ data, ...state.purchases ] });
+        let aux= state.purchases.filter((purchase)=> data._id!==purchase._id);
+        dispatch({ type: SET_PURCHASES, payload: [ data, ...aux ] });
     }
     const addDeposit = (data) => {
         dispatch({ type: SET_DEPOSITS, payload: [ data, ...state.deposits ] });
@@ -41,9 +47,11 @@ const WalletState = props => {
             balance: state.balance, 
             purchases: state.purchases,
             deposits: state.deposits,
+            purchaseSelected: state.purchaseSelected,
             iniWalletState,
             setBalance,
             setPurchases,
+            setPurchaseSelected,
             setDeposits,
             addPurchase,
             addDeposit,

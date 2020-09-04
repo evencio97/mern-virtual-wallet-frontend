@@ -17,7 +17,7 @@ function Purchases() {
   // Contexts
   const { addNotification } = useContext(AppContext);
   const { token, checkSessionExpError } = useContext(UserContext);
-  const { purchases, setPurchases } = useContext(WalletContext);
+  const { purchases, setPurchases, setPurchaseSelected } = useContext(WalletContext);
 
   // Load purchases
   useEffect(() => {
@@ -45,6 +45,11 @@ function Purchases() {
     return statusClass
   }
 
+  const confirmAction= (purchase) => {
+    window.scrollTo(0, 0);
+    setPurchaseSelected(purchase);
+  }
+
   return purchases?
     (<div className="row">
       <div className="col-12 text-center custom-shadow animated fadeIn">
@@ -56,14 +61,20 @@ function Purchases() {
                 <TableCell align="center">Amount</TableCell>
                 <TableCell align="center">Date</TableCell>
                 <TableCell align="center">Status</TableCell>
+                <TableCell align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {purchases.map((element) => (
                 <TableRow key={element._id}>
                   <TableCell align="center" component="th" scope="row">{element.amount}</TableCell>
-                  <TableCell align="center">{element.date}</TableCell>
+                  <TableCell align="center">{element.created_at}</TableCell>
                   <TableCell align="center" className={checkStatus(element.status)}><span>{element.status}</span></TableCell>
+                  <TableCell align="center">
+                    { element.status==="not confirm"?
+                      <button className="btn-1" onClick={()=> {confirmAction(element)}}>Confirm</button>
+                    : null}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
